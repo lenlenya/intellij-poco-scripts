@@ -43,18 +43,19 @@ def generate(out, className, fields, table) {
     out.println "   public class $className"
     out.println "   {"
 
+    int i = 0
     fields.each() {
+        if (i > 0) out.println "";
 
-        if (it.primarykey)
-        out.println "       [Key]"
+        if (it.primarykey) out.println "    [Key]" 
 
-        if (it.comment != "")
-        {
-            out.println "";
-            out.println "    //${it.comment}";
-        }
+        out.println "    /// <summary>";
+        out.println it.comment != "" ? "    /// ${it.comment}" : "    /// ";
+        out.println "    /// </summary>";
 
-        out.println "       public ${it.type} ${it.name} { get; set; }"
+        out.println "    public ${it.type} ${it.name} { get; set; }"
+
+        i++
     }
     out.println "   }"
 }

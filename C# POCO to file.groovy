@@ -33,7 +33,6 @@ def generate(table, dir) {
 
 def generate(out, className, fields, table) {
     out.println "using System;"
-    out.println "using Dapper;"
     out.println ""
     out.println "[Table(\"${table.getName()}\")]"
     out.println "public class $className"
